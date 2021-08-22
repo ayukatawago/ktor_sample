@@ -7,6 +7,7 @@ import io.ktor.response.*
 import io.ktor.request.*
 import io.ktor.routing.*
 
+@Suppress("unused")
 fun Application.configureSerialization() {
     install(ContentNegotiation) {
         json()

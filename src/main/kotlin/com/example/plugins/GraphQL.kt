@@ -6,6 +6,7 @@ import com.example.domain.Episode
 import com.example.domain.Human
 import io.ktor.application.*
 
+@Suppress("unused")
 fun Application.configureGraphQL() {
     install(GraphQL) {
         playground = true

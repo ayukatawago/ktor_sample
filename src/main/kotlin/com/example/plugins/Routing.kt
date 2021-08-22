@@ -6,6 +6,7 @@ import io.ktor.application.*
 import io.ktor.response.*
 import io.ktor.request.*
 
+@Suppress("unused")
 fun Application.configureRouting() {
 
     routing {
