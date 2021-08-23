@@ -7,6 +7,7 @@ plugins {
     application
     kotlin("jvm") version "1.5.21"
     id("org.jetbrains.kotlin.plugin.serialization") version "1.5.21"
+    id("org.jlleitschuh.gradle.ktlint") version "10.1.0"
 }
 
 group = "com.example"
