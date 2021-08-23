@@ -22,7 +22,7 @@ fun Application.configureGraphQL() {
                 }
             }
             query("heroes") {
-                resolver { -> listOf(luke, r2d2)}
+                resolver { -> listOf(luke, r2d2) }
             }
             type<Droid>()
             type<Human>()

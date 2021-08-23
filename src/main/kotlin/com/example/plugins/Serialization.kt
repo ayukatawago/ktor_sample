@@ -1,11 +1,10 @@
 package com.example.plugins
 
-import io.ktor.serialization.*
-import io.ktor.features.*
 import io.ktor.application.*
+import io.ktor.features.*
 import io.ktor.response.*
-import io.ktor.request.*
 import io.ktor.routing.*
+import io.ktor.serialization.*
 
 @Suppress("unused")
 fun Application.configureSerialization() {
@@ -15,7 +14,7 @@ fun Application.configureSerialization() {
 
     routing {
         get("/json/kotlinx-serialization") {
-                call.respond(mapOf("hello" to "world"))
-            }
+            call.respond(mapOf("hello" to "world"))
+        }
     }
 }
