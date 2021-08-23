@@ -13,3 +13,6 @@ trim_trailing_whitespace = false
 
 [*.{kt,kts}]
 disabled_rules=no-wildcard-imports
+
+[*.yml]
+indent_size = 2

@@ -1,0 +1,26 @@
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  assemble:
+    name: assemble
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run assemble
+        run: ./gradlew assemble
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run test
+        run: ./gradlew test
+  ktlint:
+    name: ktlint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run ktlint
+        run: ./gradlew ktlintCheck
