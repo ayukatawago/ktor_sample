@@ -16,3 +16,6 @@ disabled_rules=no-wildcard-imports
 
 [*.yml]
 indent_size = 2
+
+[*.conf]
+indent_size = 2
