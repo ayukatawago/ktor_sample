@@ -4,18 +4,13 @@ import com.apurebase.kgraphql.GraphQL
 import com.example.domain.Droid
 import com.example.domain.Episode
 import com.example.domain.Human
-import com.example.repository.DummyStarWarsRepositoryImpl
 import com.example.repository.StarWarsController
-import com.example.repository.StarWarsRepository
-import com.example.usercases.StarWarsService
-import com.example.usercases.StarWarsServiceImpl
 import io.ktor.application.*
+import org.koin.ktor.ext.inject
 
 @Suppress("unused")
 fun Application.configureGraphQL() {
-    val repository: StarWarsRepository = DummyStarWarsRepositoryImpl()
-    val service: StarWarsService = StarWarsServiceImpl(repository)
-    val controller = StarWarsController(service)
+    val controller by inject<StarWarsController>()
 
     install(GraphQL) {
         playground = true
