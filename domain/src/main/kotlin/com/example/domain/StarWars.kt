@@ -8,14 +8,14 @@ enum class Episode {
 
 interface Character {
     val id: Int
-    val name: String?
+    val name: String
     val friends: List<Character>
     val appearsIn: Set<Episode>
 }
 
 data class Human(
     override val id: Int,
-    override val name: String?,
+    override val name: String,
     override val friends: List<Character>,
     override val appearsIn: Set<Episode>,
     val homePlanet: String,
@@ -24,7 +24,7 @@ data class Human(
 
 data class Droid(
     override val id: Int,
-    override val name: String?,
+    override val name: String,
     override val friends: List<Character>,
     override val appearsIn: Set<Episode>,
     val primaryFunction: String

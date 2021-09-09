@@ -6,6 +6,6 @@ interface StarWarsRepository {
     fun getCurrentId(): Int
     fun createCharacter(character: Character): Character
     fun deleteCharacter(character: Character)
-    fun findCharacter(id: Int): Character
+    fun findCharacter(id: Int): Character?
     fun findAllCharacters(): List<Character>
 }

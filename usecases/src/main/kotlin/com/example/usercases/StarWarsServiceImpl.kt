@@ -13,11 +13,11 @@ class StarWarsServiceImpl(private val repository: StarWarsRepository) : StarWars
 
     override fun deleteCharacter(id: Int): Int {
         val character = repository.findCharacter(id)
-        repository.deleteCharacter(character)
+        character?.let(repository::deleteCharacter)
         return id
     }
 
-    override fun getCharacterById(id: Int): Character =
+    override fun getCharacterById(id: Int): Character? =
         repository.findCharacter(id)
 
     override fun listCharacters(): List<Character> =

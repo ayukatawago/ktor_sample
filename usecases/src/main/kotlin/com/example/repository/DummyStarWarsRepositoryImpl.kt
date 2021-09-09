@@ -20,7 +20,7 @@ class DummyStarWarsRepositoryImpl : StarWarsRepository {
         data.remove(target)
     }
 
-    override fun findCharacter(id: Int): Character {
+    override fun findCharacter(id: Int): Character? {
         return data.first { it.id == id }
     }
 
