@@ -1,23 +1,25 @@
 package com.example.usercases
 
 import com.example.domain.Character
+import com.example.domain.Droid
 import com.example.domain.Episode
+import com.example.domain.Human
 import com.example.repository.StarWarsRepository
 
 class StarWarsServiceImpl(private val repository: StarWarsRepository) : StarWarsService {
-    override fun getNewId(): Int =
-        repository.getCurrentId() + 1
+    override fun createDroid(name: String, primaryFunction: String): Droid =
+        repository.addDroid(name, primaryFunction)
 
-    override fun createCharacter(character: Character): Character =
-        repository.createCharacter(character)
+    override fun createHuman(name: String, homePlanet: String, height: Double): Human =
+        repository.addHuman(name, homePlanet, height)
 
     override fun deleteCharacter(id: Int): Int {
         val character = repository.findCharacter(id)
-        repository.deleteCharacter(character)
+        character?.let(repository::deleteCharacter)
         return id
     }
 
-    override fun getCharacterById(id: Int): Character =
+    override fun getCharacterById(id: Int): Character? =
         repository.findCharacter(id)
 
     override fun listCharacters(): List<Character> =

@@ -1,6 +1,6 @@
 package com.example.di
 
-import com.example.repository.DummyStarWarsRepositoryImpl
+import com.example.database.StarWarsRepositoryImpl
 import com.example.repository.StarWarsController
 import com.example.repository.StarWarsRepository
 import com.example.usercases.StarWarsService
@@ -15,7 +15,7 @@ import org.koin.ktor.ext.Koin
 fun Application.inject() {
     install(Koin) {
         val sampleModule = module(createdAtStart = true) {
-            singleBy<StarWarsRepository, DummyStarWarsRepositoryImpl>()
+            singleBy<StarWarsRepository, StarWarsRepositoryImpl>()
             singleBy<StarWarsService, StarWarsServiceImpl>()
             single<StarWarsController>()
         }
