@@ -12,28 +12,28 @@ class StarWarsCharacterEntity(id: EntityID<Int>) : IntEntity(id) {
     var homePlanet by StarWarsCharactersDao.homePlanet
     var height by StarWarsCharactersDao.height
     var primaryFunction by StarWarsCharactersDao.primaryFunction
+    var type by StarWarsCharactersDao.type
 
     fun getCharacter(): Character =
-        if (height < 0) {
-            Droid(id.value, name, listOf(), setOf(), primaryFunction)
-        } else {
-            Human(id.value, name, listOf(), setOf(), homePlanet, height)
+        when (type) {
+            CharacterType.DROID -> Droid(id.value, name, listOf(), setOf(), primaryFunction)
+            CharacterType.HUMAN -> Human(id.value, name, listOf(), setOf(), homePlanet, height)
         }
 
-    fun setCharacter(character: Character) {
-        name = character.name
-        when (character) {
-            is Droid -> {
-                homePlanet = ""
-                primaryFunction = character.primaryFunction
-                height = -1.0
-            }
-            is Human -> {
-                homePlanet = character.homePlanet
-                height = character.height
-                primaryFunction = ""
-            }
-        }
+    fun setDroid(name: String, primaryFunction: String) {
+        this.name = name
+        this.primaryFunction = primaryFunction
+        this.homePlanet = ""
+        this.height = 0.0
+        this.type = CharacterType.DROID
+    }
+
+    fun setHuman(name: String, homePlanet: String, height: Double) {
+        this.name = name
+        this.primaryFunction = ""
+        this.homePlanet = homePlanet
+        this.height = height
+        this.type = CharacterType.HUMAN
     }
 
     companion object : IntEntityClass<StarWarsCharacterEntity>(StarWarsCharactersDao)

@@ -7,4 +7,10 @@ object StarWarsCharactersDao: IntIdTable() {
     val homePlanet = varchar("homePlanet", 20)
     val height = double("height")
     val primaryFunction = varchar("primaryFunction", 20)
+    val type = enumeration("type", CharacterType::class)
+}
+
+enum class CharacterType{
+    DROID,
+    HUMAN
 }

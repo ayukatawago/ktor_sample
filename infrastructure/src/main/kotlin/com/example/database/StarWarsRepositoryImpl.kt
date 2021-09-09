@@ -1,26 +1,27 @@
 package com.example.database
 
 import com.example.domain.Character
+import com.example.domain.Droid
+import com.example.domain.Human
 import com.example.repository.StarWarsRepository
 import org.jetbrains.exposed.sql.transactions.transaction
 
 class StarWarsRepositoryImpl: StarWarsRepository {
-    override fun getCurrentId(): Int {
-        return transaction {
-            StarWarsCharacterEntity.all()
-                .map { it.id.value }
-                .lastOrNull() ?: 0
-        }
-    }
-
-    override fun createCharacter(character: Character): Character {
-        return transaction {
+    override fun addDroid(name: String, primaryFunction: String): Droid =
+        transaction {
             val entity = StarWarsCharacterEntity.new {
-                setCharacter(character)
+                setDroid(name, primaryFunction)
             }
-            entity.getCharacter()
+            entity.getCharacter() as Droid
         }
-    }
+
+    override fun addHuman(name: String, homePlanet: String, height: Double): Human =
+        transaction {
+            val entity = StarWarsCharacterEntity.new {
+                setHuman(name, homePlanet, height)
+            }
+            entity.getCharacter() as Human
+        }
 
     override fun deleteCharacter(character: Character) {
         transaction {
@@ -32,9 +33,7 @@ class StarWarsRepositoryImpl: StarWarsRepository {
     override fun findCharacter(id: Int): Character? =
         transaction {
             val entity = StarWarsCharacterEntity.findById(id)
-            val character = entity?.getCharacter()
-            entity?.delete()
-            character
+            entity?.getCharacter()
         }
 
     override fun findAllCharacters(): List<Character> =
